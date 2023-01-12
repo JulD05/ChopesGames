@@ -8,77 +8,48 @@ if ($session->has('cart')) {
 
 <head>
     <title>ChopesGames</title>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() . 'assets/images/favicon.ico' ?>">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('/assets/images/gamecontroller.ico')?>">
     <link rel="alternate" type="application/rss+XML" title="ChopesGames" href="<?php echo site_url('AdministrateurSuper/flux_rss') ?>" />
-
-    <link rel="stylesheet" href="<?= css_url('bootstrap.min') ?>">
-    <link rel="stylesheet" href="<?= css_url('style') ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="<?= js_url('bootstrap.min') ?>"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+<body class="">
+    <nav class="navbar navbar-expand-xl bg-primary">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <!-- <div class="navbar-collapse collapse w-100"> -->
             <a class="navbar-brand" href="<?php echo site_url('Visiteur/accueil') ?>">
-                <img class="d-block" style="width:60px;height:38px;'" src="<?= base_url() . '/assets/images/logo.jpg' ?>" alt="Logo">
-            </a>
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a href="<?= site_url('Visiteur/accueil') ?>" class="btn btn-info">
-                        <span class="fas fa-home"></span>Accueil
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="btn btn-primary" href="<?= site_url('Visiteur/lister_les_produits') ?>">Lister tous les Produits</a>
-                </li>
-
-            </ul>
+                <img class="d-block" style="width:60px;height:38px;'" src="<?= base_url() . '/assets/images/logo.jpg'?>" alt="Logo"></a>
+            <a class="btn btn-primary text-dark" href="<?= site_url('Visiteur/lister_les_produits') ?>">Nos produits</a>
         </div>
 
-
-
-
         <div class="mx-auto order-0">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target=".dual-collapse2">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
 
-        <div class=" w-75 order-2 ">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <form class="form-inline" method="post" action="<?php echo site_url('Visiteur/lister_les_produits') ?>">
-                        <input class="form-control mr-sm-2" type="text" name="search" id='search' placeholder="Search">
-                        <button class="btn btn-success" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </li>
-            </ul>
+        <div class="container-fluid navbar-nav mx-auto nav-item"> 
+            <form class="form-inline" method="post" action="<?php echo site_url('Visiteur/lister_les_produits') ?>">
+                <input class="form-control mr-sm-2" type="text" name="search" id='search' placeholder="Rechercher">
+                <button class="container-fluid btn btn-primary" type="submit">
+                    <img src="/assets/images/loupe.ico" width="25">
+                </button>
+            </form>
         </div>
-
-
-
 
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="<?php echo site_url('Visiteur/afficher_panier') ?>" class="btn btn-info btn-md">
+                    <a href="<?php echo site_url('Visiteur/afficher_panier') ?>" class="btn btn-primary btn-md">
                         <span class="fas fa-shopping-cart"><?php if ($nb > 0) echo "($nb)" ?></span>
+                        <img src="/assets/images/panier.ico" width="30">
                     </a>
                 </li>
 
                 <?php if ($session->get('statut') == 2 or $session->get('statut') == 3) : ?>
                     <li class="nav-item dropdown">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
                             Administration
                         </button>
                         <div class="dropdown-menu">
@@ -92,11 +63,10 @@ if ($session->has('cart')) {
                     </li>
                 <?php endif; ?>
 
-
                 <li class="nav-item dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Mon compte
-                    </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                        <img src="/assets/images/user.ico" width="30">
+                </button>
                     <div class="dropdown-menu">
                         <?php if (!is_null($session->get('statut'))) { ?>
                             <?php if ($session->get('statut') == 1) { ?>
@@ -112,11 +82,7 @@ if ($session->has('cart')) {
                         <?php } ?>
                     </div>
                 </li>
-
-                <li>
-                </li>
-                <li>
-                </li>
+                
                 <?php if (empty($session->get('statut'))) : ?>
                     <li class="nav-item droite">
                         <a href="<?php echo site_url('Visiteur/connexion_administrateur') ?>" class="fas fa-lock"></a>
@@ -125,4 +91,6 @@ if ($session->has('cart')) {
             </ul>
         </div>
     </nav>
+
     <main>
+
